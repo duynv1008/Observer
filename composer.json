@@ -1,0 +1,24 @@
+{
+    "name": "dnv/observer",
+    "description": "The package make observer",
+    "authors": [
+        {
+            "name": "Nguyen Van Duy",
+            "email": "duy.nv@globalflow.com.vn"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "DNV\\Observer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DNV\\Observer\\ObserverServiceProvider"
+            ]
+        }
+    }
+}

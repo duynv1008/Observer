@@ -1,0 +1,61 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use App\Http\Traits\AuthenUser;
+use App\Models\$MODEL_LOG$;
+use App\Models\$MODEL$;
+
+class $CLASS$ {
+
+	use AuthenUser;
+
+	protected $MODEL_LOG$;
+	function __construct() {
+		$this->$MODEL_LOG$ = new $MODEL_LOG$();
+	}
+	/**
+	 * Listen to the $MODEL$ created event.
+	 *
+	 * @param  \App\$MODEL$  $$MODEL_LOW$
+	 * @return void
+	 */
+	public function created($MODEL$ $MODEL_LOW$) {
+		$this->$MODEL_LOG$->storeItem([
+			'user_id' => $this->getUser()->id,
+			'useraction_id' => $$MODEL_LOW$->id,
+			'action' => config('action.CREATE'),
+			'status' => $$MODEL_LOW$->status,
+		]);
+	}
+
+	/**
+	 * Listen to the $MODEL$ updated event.
+	 *
+	 * @param  \App\$MODEL$  $$MODEL_LOW$
+	 * @return void
+	 */
+	public function updated($MODEL$ $MODEL_LOW$) {
+		$this->$MODEL_LOG$->storeItem([
+			'user_id' => $this->getUser()->id,
+			'useraction_id' => $$MODEL_LOW$->id,
+			'action' => config('action.UPDATE'),
+			'status' => $$MODEL_LOW$->status,
+		]);
+	}
+
+	/**
+	 * Listen to the $MODEL$ deleted event.
+	 *
+	 * @param  \App\$MODEL$  $$MODEL_LOW$
+	 * @return void
+	 */
+	public function deleted($MODEL$ $MODEL_LOW$) {
+		$this->$MODEL_LOG$->storeItem([
+			'user_id' => $this->getUser()->id,
+			'useraction_id' => $$MODEL_LOW$->id,
+			'action' => config('action.DELETE'),
+			'status' => $$MODEL_LOW$->status,
+		]);
+	}
+}
