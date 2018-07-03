@@ -1,4 +1,3 @@
 # Observer
 
-#Install
-composer require dnv/observer
+- Install: 'composer require dnv/observer'
