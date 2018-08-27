@@ -14,6 +14,8 @@ class CommandObserver extends GeneratorCommand {
 	 * @var string
 	 */
 	protected $argumentName = 'observer';
+
+	protected $signature = 'dnv:observer {observer} {--model=} {--log=}';
 	/**
 	 * The console command name.
 	 *
@@ -40,6 +42,10 @@ class CommandObserver extends GeneratorCommand {
 	protected function getTemplateContents() {
 		return (new Stub($this->getStubName(), [
 			'NAMESPACE' => "App\Observers",
+			'MODEL' => $this->option('model'),
+			'MODEL_LOW' => strtolower($this->option('model')),
+			'MODEL_LOG' => $this->option('log'),
+			'VAR_LOG' => $this->option('log'),
 			'CLASS_NAMESPACE' => $this->getClassNamespace(),
 			'CLASS' => class_basename($this->getObserverName()),
 		]))->render();
@@ -59,7 +65,7 @@ class CommandObserver extends GeneratorCommand {
 	 */
 	protected function getOptions() {
 		return [
-			['model', 'm', InputOption::VALUE_NONE, 'Generate a model observer', null],
+			['model', null, InputOption::VALUE_NONE, 'Generate a model observer'],
 		];
 	}
 	/**

@@ -10,52 +10,81 @@ class $CLASS$ {
 
 	use AuthenUser;
 
-	protected $MODEL_LOG$;
+	protected $VAR_LOG$;
 	function __construct() {
-		$this->$MODEL_LOG$ = new $MODEL_LOG$();
+		$this->$VAR_LOG$ = new $MODEL_LOG$();
 	}
-	/**
-	 * Listen to the $MODEL$ created event.
-	 *
-	 * @param  \App\$MODEL$  $$MODEL_LOW$
-	 * @return void
-	 */
-	public function created($MODEL$ $MODEL_LOW$) {
-		$this->$MODEL_LOG$->storeItem([
+
+	 /**
+     * Handle the $MODEL$ "created" event.
+     *
+     * @param  \App\$MODEL$  $user
+     * @return void
+     */
+    
+	public function created($MODEL$ $$MODEL_LOW$) {
+		$this->$VAR_LOG$->storeItem([
 			'user_id' => $this->getUser()->id,
 			'useraction_id' => $$MODEL_LOW$->id,
-			'action' => config('action.CREATE'),
+			'action' => config('config.ACTION.CREATE'),
 			'status' => $$MODEL_LOW$->status,
 		]);
 	}
 
-	/**
-	 * Listen to the $MODEL$ updated event.
-	 *
-	 * @param  \App\$MODEL$  $$MODEL_LOW$
-	 * @return void
-	 */
-	public function updated($MODEL$ $MODEL_LOW$) {
-		$this->$MODEL_LOG$->storeItem([
+	 /**
+     * Handle the $MODEL$ "updated" event.
+     *
+     * @param  \App\$MODEL$  $user
+     * @return void
+     */
+	public function updated($MODEL$ $$MODEL_LOW$) {
+		$this->$VAR_LOG$->storeItem([
 			'user_id' => $this->getUser()->id,
 			'useraction_id' => $$MODEL_LOW$->id,
-			'action' => config('action.UPDATE'),
+			'action' => config('config.ACTION.UPDATE'),
 			'status' => $$MODEL_LOW$->status,
 		]);
 	}
 
-	/**
-	 * Listen to the $MODEL$ deleted event.
-	 *
-	 * @param  \App\$MODEL$  $$MODEL_LOW$
-	 * @return void
-	 */
-	public function deleted($MODEL$ $MODEL_LOW$) {
-		$this->$MODEL_LOG$->storeItem([
+	 /**
+     * Handle the $MODEL$ "deleted" event.
+     *
+     * @param  \App\$MODEL$  $user
+     * @return void
+     */
+	public function deleted($MODEL$ $$MODEL_LOW$) {
+		$this->$VAR_LOG$->storeItem([
 			'user_id' => $this->getUser()->id,
 			'useraction_id' => $$MODEL_LOW$->id,
-			'action' => config('action.DELETE'),
+			'action' => config('config.ACTION.DELETE'),
 			'status' => $$MODEL_LOW$->status,
 		]);
 	}
+
+    /**
+     * Handle the user "restored" event.
+     *
+     * @param  \App\$MODEL$  $$MODEL_LOW$
+     * @return void
+     */
+    public function restored($MODEL$ $$MODEL_LOW$)
+    {
+        $this->$VAR_LOG$->storeItem([
+			'user_id' => $this->getUser()->id,
+			'useraction_id' => $$MODEL_LOW$->id,
+			'action' => config('config.ACTION.RESTORE'),
+			'status' => $$MODEL_LOW$->status,
+		]);
+    }
+
+    /**
+     * Handle the user "force deleted" event.
+     *
+     * @param  \App\$MODEL$  $$MODEL_LOW$
+     * @return void
+     */
+    public function forceDeleted($MODEL$ $$MODEL_LOW$)
+    {
+        //
+    }
 }
